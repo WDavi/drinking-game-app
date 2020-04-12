@@ -1,33 +1,23 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import GameButton from './components/GameButton';
-import {InfoBox} from './components/InfoBox/styles';
+import Home from './pages/home';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <InfoBox>
-        <Text style={styles.text}>Escolha um modo de jogo</Text>
-      </InfoBox>
-      <GameButton color="#b4a7d5" symbols="🎉" text=" Festa"/>
-      <GameButton color="#d81418" symbols="🔥" text=" Hot"/>
-      <GameButton color="#0c2c45" symbols="🔒 ✋" text="Eu nunca"/>
-      <GameButton color="#f2a12c" symbols="🔒"text=" Em breve"/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator 
+        initialRouteName="Home"
+        screenOptions={{
+          headerShown: false
+        }}
+      >
+        <Stack.Screen name="Home" component={Home}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems:"center",
-    justifyContent: "center",
-    backgroundColor: "#110c22",
-  },
-  text: {
-    color:'#fff',
-    fontSize: 24,
-    fontWeight: "bold"
-  },
-})
